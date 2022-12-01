@@ -1,0 +1,35 @@
+.todo-app {
+  background-color: #03203C;
+  color: #fff;
+  padding: 20px;
+  height: 100vh;
+}
+
+.todo-list-container .accordion-item {
+  position: relative;
+}
+
+.todo-icon-container {
+  position: absolute;
+  content: " ";
+  top: 12px;
+  width: 85px;
+  right: 60px;
+  font-size: 20px;
+  z-index: 999;
+}
+
+.tasks-number {
+  margin-left: 10px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 11px;
+  background-color: red;
+}
+
+.todo-icon {
+  border: none;
+  background: none;
+  margin: 0 5px;
+}

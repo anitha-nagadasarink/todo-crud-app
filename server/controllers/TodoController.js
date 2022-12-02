@@ -1,10 +1,117 @@
 const TodoDB = require("../models/TodoSchema");
+const UserDB = require("../models/UserSchema");
+
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcryptjs");
+
+// const auth = require("../middleware/auth")
 
 const mongoose = require("mongoose");
 
 exports.home = (req, res) => {
   res.send("Hello Adavanced Todo App");
 };
+
+
+exports.registerUser = async (req, res) => {
+  try {
+    // Collect All information from User
+    const { firstname, lastname, email, password } = req.body;
+
+    // Validate the data
+
+    if (!(email && password && firstname && lastname)) {
+      throw new Error("All fileds are required");
+    }
+
+    // Check if the user exits in database
+    const exitingUser = await UserDB.findOne({ email });
+    if (exitingUser) {
+      throw new Error(`${exitingUser} USer name alredy exits in database`);
+    }
+
+    // Encrypt the password
+    const newEncryptedPassword = await bcrypt.hash(password, 10);
+
+    // Create new entry in database
+    const userdb = await UserDB.create({
+      firstname,
+      lastname,
+      email,
+      password: newEncryptedPassword
+    });
+
+    // Create a token and send it to User
+
+    const token = jwt.sign({
+      id: userdb._id, email
+    }, "shhhh", { expiresIn: "2h" });
+
+    userdb.token = token;
+    // Avoid the tp display in password
+    userdb.password = undefined
+
+    res.status(200).json({
+      success: true,
+      message: "User registered Successfully",
+      userdb
+    })
+
+  }
+  catch (error) {
+    console.log(error);
+    res.status(400).json({
+      success: false,
+      message: error.message,
+    })
+  }
+};
+
+exports.login = async (req, res) => {
+  try {
+    // Getting information from User
+    const { email, password } = req.body;
+
+    // Validate the data
+
+    if (!(email && password)) {
+      throw new Error("Email and password is required");
+    }
+
+    // Check user in database
+    const userdb = await UserDB.findOne({ email });
+
+    // Macth database
+    if (userdb && (await bcrypt.compare(password, userdb.password))) {
+      const token = jwt.sign({ i: userdb._id, email }, "shhhh", { expiresIn: "2h" })
+
+      userdb.password = undefined
+      userdb.token = token
+
+      const options = {
+        expires: new Date(Date.now() + 3 * 24 * 60 * 60 * 1000),
+        httpOnly: true
+      }
+      res.status(200).cookie("token", token, options).json({
+        success: true,
+        token,
+        userdb
+      })
+    }
+  }
+  catch (error) {
+    console.log(error);
+    res.status(400).json({
+      success: false,
+      message: `Error is login ${error.message}`
+    })
+  }
+};
+
+
+// exports.dashboard = auth, (req, res) => {
+//   res.send('Welcome to dashboard')
+// }
 
 exports.createTodo = async (req, res) => {
   try {

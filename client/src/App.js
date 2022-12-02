@@ -30,8 +30,12 @@ function App() {
   })
 
   return (
-    <section className="todo-app">
-      <Container fluid>
+    <main>
+      <header className="bg-light px-4 py-3">
+        <h2 className='text-info'>Accomplisher</h2>
+      </header>
+
+      <Container fluid className="todo-app">
         <Row>
           <Col xs={12} lg={4}>
             <TodoForm fetchTodoData={fetchTodoData} />
@@ -45,7 +49,7 @@ function App() {
       </Container>
 
       <Toaster />
-    </section>
+    </main>
   );
 }
 

@@ -12,7 +12,7 @@ const TodoSchema = new mongoose.Schema({
       type: String
     }]
   },
-  isSorted: {
+  isPriority: {
     type: Boolean,
     default: true
   }

@@ -8,8 +8,8 @@ exports.home = (req, res) => {
 
 exports.createTodo = async (req, res) => {
   try {
-    const { title, tasks, createdAt } = req.body;
-    console.log("Todo", title, tasks);
+    const { title, tasks, isPriority } = req.body;
+    console.log("Todo", title, tasks, isPriority);
 
     const todobj = {};
 
@@ -27,8 +27,14 @@ exports.createTodo = async (req, res) => {
       enumerable: true
     })
 
-    const todo = await TodoDB.create(todobj);
 
+    if (isPriority === true || isPriority === false) {
+      Object.defineProperty(todobj, "isPriority", {
+        value: isPriority,
+        enumerable: true
+      })
+    }
+    const todo = await TodoDB.create(todobj);
     await todo.save();
 
     console.log(todo.createdAt);

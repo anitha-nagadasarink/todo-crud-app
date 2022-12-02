@@ -1,10 +1,3 @@
-// Om Ganapathi Siddhi Buddhi
-// OMshakthiamma Shivappa
-// Vishnu Lakshmi
-// Brahama Saraswathi
-// Dakshinamurthy Haygriva
-// Sri Venkateshwara Sri Vidya Vijaya Gnana Dhyrya Aurogya Lakshmi devi
-
 
 import React, { useState } from "react";
 import Card from 'react-bootstrap/Card';
@@ -12,40 +5,46 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
 import axios from "axios";
+import toast from "react-hot-toast";
 
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-
-const TodoForm = () => {
+const TodoForm = ({ fetchTodoData }) => {
 
   const [title, setTitle] = useState("");
   const [tasks, setTasks] = useState("");
+  const [isPriority, setIsPriority] = useState(false);
 
 
   const submitData = async () => {
-    const data = {
-      title: title,
-      tasks: tasks.split(',')
-    };
-    const res = await axios.post("/createTodo", data);
-    console.log(res);
+    try {
+      const data = {
+        title: title,
+        tasks: tasks.split(','),
+        isPriority: isPriority
+      };
+      const res = await axios.post("/createTodo", data);
 
+      if (res.data.success) {
+        toast.success("Todo created successfully");
+        fetchTodoData();
+      }
+    }
+    catch (error) {
+      toast.error(error.response.data.message);
+    }
+
+  }
+
+  const handleIsPriority = () => {
+    setIsPriority(!isPriority)
   }
 
   const handleSubmit = (event) => {
     event.preventDefault();
     submitData();
-
     setTitle("");
     setTasks("");
   }
-  const showToastInsert = () => {
-    toast.success('Todo Inserted Successfullt!', {
-      position: toast.POSITION.BOTTOM_CENTER
-    });
-  };
 
   return (
     <Card>
@@ -71,17 +70,23 @@ const TodoForm = () => {
             </Form.Text>
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
-            <Form.Check type="checkbox" label="Is Priority?" />
+            <Form.Check
+              type="checkbox"
+              label="Is Priority?"
+              id="isPriority"
+              value={isPriority}
+              onChange={handleIsPriority} />
           </Form.Group>
-          <Button
+          <Button className="text-light"
             variant="info"
             type="submit"
-            onClick={showToastInsert}>
+          >
             Submit
           </Button>
-          <ToastContainer />
+
         </Form>
       </Card.Body>
+
     </Card>
 
   );

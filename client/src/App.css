@@ -1,12 +1,15 @@
 .todo-app {
   background-color: #03203C;
-  color: #fff;
+  color: #03203C;
   padding: 20px;
   height: 100vh;
 }
 
 .todo-list-container .accordion-item {
   position: relative;
+  margin-bottom: 15px;
+  border-radius: 0;
+  color: #03203C;
 }
 
 .todo-icon-container {

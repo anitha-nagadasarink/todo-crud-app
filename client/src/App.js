@@ -11,7 +11,7 @@ import TodoList from './components/TodoList';
 function App() {
   return (
     <section className="todo-app">
-      <Container>
+      <Container fluid>
         <Row>
           <Col xs={12} lg={4}>
             <TodoForm />

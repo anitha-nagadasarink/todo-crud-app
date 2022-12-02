@@ -2,7 +2,7 @@
   background-color: #03203C;
   color: #03203C;
   padding: 20px;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 .todo-list-container .accordion-item {

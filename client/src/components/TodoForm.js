@@ -17,6 +17,7 @@ const TodoForm = ({ fetchTodoData }) => {
 
   const submitData = async () => {
     try {
+
       const data = {
         title: title,
         tasks: tasks.split(','),
@@ -24,13 +25,20 @@ const TodoForm = ({ fetchTodoData }) => {
       };
       const res = await axios.post("/createTodo", data);
 
-      if (res.data.success) {
+      if (!res.data.success) {
+        toast.error("Todo or Tasks missed");
+      } else {
         toast.success("Todo created successfully");
         fetchTodoData();
       }
     }
     catch (error) {
-      toast.error(error.response.data.message);
+
+      if (!title && !tasks) {
+        toast.error("Todo and Tasks are mandotory");
+      } else {
+        toast.error(error.response.data.message);
+      }
     }
 
   }

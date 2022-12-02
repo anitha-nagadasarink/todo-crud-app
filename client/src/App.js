@@ -36,7 +36,7 @@ function App() {
           <Col xs={12} lg={4}>
             <TodoForm fetchTodoData={fetchTodoData} />
           </Col>
-          <Col xs={6} lg={8}>
+          <Col xs={12} lg={8}>
             <TodoList
               todoData={todoData}
               fetchTodoData={fetchTodoData} />

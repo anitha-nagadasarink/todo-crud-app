@@ -79,6 +79,7 @@ const TodoForm = ({ fetchTodoData }) => {
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
             <Form.Check
+              className="text-dark"
               type="checkbox"
               label="Is Priority?"
               id="isPriority"

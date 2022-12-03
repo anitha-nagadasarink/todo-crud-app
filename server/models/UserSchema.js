@@ -5,13 +5,13 @@ const UserSchema = new mongoose.Schema({
     type: String,
     trim: true,
     maxlength: [15, "First Name should be less then 15 characters"],
-    required: [true, "User Name is required"]
+    // required: [true, "User Name is required"]
   },
   lastname: {
     type: String,
     trim: true,
     maxlength: [15, "LastName should be less then 15 characters"],
-    required: [true, "User Name is required"]
+    // required: [true, "User Name is required"]
   },
   email: {
     type: String,

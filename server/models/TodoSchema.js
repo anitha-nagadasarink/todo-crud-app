@@ -10,19 +10,19 @@ const TodoSchema = new mongoose.Schema({
   tasks: {
     type: [{
       type: String,
-      required: true
+      required: [true, "Tasks are required"]
     }]
   },
   isPriority: {
     type: Boolean,
     default: true
   },
-  userID: {
-    type: String,
-    required: true,
-    trim: true,
-    maxlength: [25, "Max Length should be less then 25 characters"]
-  }
+  // userID: {
+  //   type: String,
+  //   required: true,
+  //   trim: true,
+  //   maxlength: [25, "Max Length should be less then 25 characters"]
+  // }
 },
   {
     timestamps:

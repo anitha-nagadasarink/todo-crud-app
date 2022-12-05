@@ -71,22 +71,56 @@ const TodoList = ({ todoData, fetchTodoData }) => {
       toast.error(error.response.data.message);
     }
   }
+
+
+  const [searchInput, setSearchInput] = useState("");
+  const [filteredResults, setFilteredResults] = useState("");
+
+  const handleSearch = (searchItem) => {
+    setSearchInput(searchItem);
+
+    if (searchInput !== '') {
+      const filteredData = todoData.filter((item) => {
+        return Object.values(item.title).join(' ').toLowerCase().includes(searchInput.toLowerCase());
+      });
+      setFilteredResults(filteredData);
+    } else {
+      setFilteredResults(todoData);
+    }
+  }
   return (
     <div>
 
       <Container>
         <Row className="mb-3">
-          <Col xs={12} lg={9} className='sort-todo-list pb-6'>
+          <Col xs={12} lg={5} className='sort-todo-list pb-6'>
             <h3 className='text-light mt-4'>Total Tasks: {todoData.length}</h3>
+          </Col>
+          <Col xs={12} lg={4}>
+            {
+              // <Form onSubmit={handleSearch}>
+              //   <Button className="text-light"
+              //     variant="info"
+              //     type="submit"
+              //   >
+              //     Search
+              //   </Button>
+              // </Form>
+            }
+
+            <input
+              placeholder='Search Todo'
+              className="p-1 mt-4"
+              onChange={(e) => handleSearch(e.target.value)} />
           </Col>
           <Col xs={12} lg={3} className='sort-todo-list pl-0'>
             <span className='text-light'>Sory By:</span>
             <Form.Select defaultValue={"default"} onChange={(e) => setSortedData(e.target.value)}>
               <option value="default">Default</option>
-              <option value="ascending">Ascending</option>
-              <option value="descending">Descending</option>
-              <option value="priority">Priority</option>
-              <option value="createdAt">createdAt</option>
+              <option value="ascending">By Ascending A-Z</option>
+              <option value="descending">By Descending Z-A</option>
+              <option value="priority">By Priority </option>
+              <option value="createdAt">By Date</option>
             </Form.Select>
           </Col>
         </Row>
@@ -94,35 +128,78 @@ const TodoList = ({ todoData, fetchTodoData }) => {
 
 
       <Accordion defaultActiveKey="0" className="todo-list-container pt-10">
-        {todoData && [...todoData].sort(sortMethods[sortedData].method).map((todo, i) => (
-          <Accordion.Item eventKey={`${i}`}>
-            <div className="todo-icon-container">
+        {searchInput.length > 1 ?
+          (
+            [...filteredResults].map((todo, i) => {
+              return (
+                <Accordion.Item eventKey={`${i}`}>
+                  <div className="todo-icon-container">
 
-              <button className="todo-icon"
-                onClick={() => handleEdit(todo._id, todo.title)}>
-                <FaRegEdit className="text-info" />
-              </button>
+                    <button className="todo-icon"
+                      onClick={() => handleEdit(todo._id, todo.title)}>
+                      <FaRegEdit className="text-info" />
+                    </button>
 
-              <button className="todo-icon"
-                onClick={() => handleDelete(todo._id, todo.title)}>
-                <FaRegTrashAlt className="text-danger " />
-              </button>
-            </div>
-            <Accordion.Header>
-              <h6>
-                <span className="todo-star info">
-                  {todo.isPriority ? <BsFillStarFill /> : <FaRegStar />}
-                </span>
+                    <button className="todo-icon"
+                      onClick={() => handleDelete(todo._id, todo.title)}>
+                      <FaRegTrashAlt className="text-danger " />
+                    </button>
+                  </div>
+                  <Accordion.Header>
+                    <h6>
+                      <span className="todo-star info">
+                        {todo.isPriority ? <BsFillStarFill /> : <FaRegStar />}
+                      </span>
 
-                <span>  {i + 1}. {todo.title}</span>
-                <span className="tasks-number">{todo.tasks.length}</span>
-              </h6>
-            </Accordion.Header>
-            <Accordion.Body>
-              {todo.tasks}
-            </Accordion.Body>
-          </Accordion.Item>
-        ))}
+                      <span>  {i + 1}. {todo.title}</span>
+                      <span className="tasks-number">{todo.tasks.length}</span>
+                    </h6>
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    {todo.tasks}
+                  </Accordion.Body>
+                </Accordion.Item>
+              )
+            })
+          )
+          :
+          (
+            [...todoData].sort(sortMethods[sortedData].method).map((todo, i) => {
+              return (
+                <Accordion.Item eventKey={`${i}`}>
+                  <div className="todo-icon-container">
+
+                    <button className="todo-icon"
+                      onClick={() => handleEdit(todo._id, todo.title)}>
+                      <FaRegEdit className="text-info" />
+                    </button>
+
+                    <button className="todo-icon"
+                      onClick={() => handleDelete(todo._id, todo.title)}>
+                      <FaRegTrashAlt className="text-danger " />
+                    </button>
+                  </div>
+                  <Accordion.Header>
+                    <h6>
+                      <span className="todo-star info">
+                        {todo.isPriority ? <BsFillStarFill /> : <FaRegStar />}
+                      </span>
+
+                      <span>  {i + 1}. {todo.title}</span>
+                      <span className="tasks-number">{todo.tasks.length}</span>
+                    </h6>
+                  </Accordion.Header>
+                  <Accordion.Body>
+                    {todo.tasks}
+                  </Accordion.Body>
+                </Accordion.Item>
+              )
+            })
+          )
+        }
+
+
+
       </Accordion>
     </div>
   );

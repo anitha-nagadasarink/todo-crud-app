@@ -44,9 +44,9 @@ const TodoList = ({ todoData, fetchTodoData }) => {
   // console.log(todoData);
 
   const sortMethods = {
-    default: { method: (a, b) => a.createdAt > b.createdAt ? -1 : 1 },
-    ascending: { method: (a, b) => a.title > b.title ? 1 : -1 },
-    descending: { method: (a, b) => a.title > b.title ? -1 : 1 },
+    default: { method: (a, b) => a.createdAt.toLowerCase() > b.createdAt.toLowerCase() ? -1 : 1 },
+    ascending: { method: (a, b) => a.title.toLowerCase() > b.title.toLowerCase() ? 1 : -1 },
+    descending: { method: (a, b) => a.title.toLowerCase() > b.title.toLowerCase() ? -1 : 1 },
     priority: { method: (a, b) => Number(b.isPriority) - Number(a.isPriority) },
     createdAt: {
       method: (a, b) => a.createdAt > b.createdAt ? -1 : 1
@@ -81,7 +81,7 @@ const TodoList = ({ todoData, fetchTodoData }) => {
 
     if (searchInput !== '') {
       const filteredData = todoData.filter((item) => {
-        return Object.values(item.title).join(' ').toLowerCase().includes(searchInput.toLowerCase());
+        return Object.values(item.title).join('').toLowerCase().includes(searchInput.toLowerCase());
       });
       setFilteredResults(filteredData);
     } else {
@@ -156,7 +156,9 @@ const TodoList = ({ todoData, fetchTodoData }) => {
                     </h6>
                   </Accordion.Header>
                   <Accordion.Body>
-                    {todo.tasks}
+                    {todo.tasks.map((task, i) => (
+                      <strong className='d-block'>Task {i + 1}: {task}</strong>
+                    ))}
                   </Accordion.Body>
                 </Accordion.Item>
               )
@@ -190,7 +192,9 @@ const TodoList = ({ todoData, fetchTodoData }) => {
                     </h6>
                   </Accordion.Header>
                   <Accordion.Body>
-                    {todo.tasks}
+                    {todo.tasks.map((task, i) => (
+                      <strong className='d-block'>Task {i + 1}: {task}</strong>
+                    ))}
                   </Accordion.Body>
                 </Accordion.Item>
               )

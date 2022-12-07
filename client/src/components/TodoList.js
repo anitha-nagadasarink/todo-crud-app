@@ -26,7 +26,7 @@ const TodoList = ({ todoData, fetchTodoData }) => {
         toast.error("Please enter Tasks and title");
       } else {
         const resp = await axios.put(`/editTodo/${todoId}`, {
-          title: newTitle,
+          title: newTitle[0].toUpperCase() + newTitle.substring(1),
           tasks: newTaks
         });
         if (resp.data.success) {

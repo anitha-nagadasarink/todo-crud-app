@@ -1,6 +1,8 @@
-.todo-app {
+/* Registeration  */
+
+
+.todo-container {
   background-color: #03203C;
-  color: #fff;
   padding: 20px;
   min-height: 100vh;
 }

@@ -1,6 +1,8 @@
 const express = require("express");
 const {
   home,
+  registerUser,
+  login,
   createTodo,
   getTodos,
   searchTodo,
@@ -15,8 +17,8 @@ router.get("/", home);
 
 
 // User Routes
-// router.post("/registerUser", registerUser);
-// router.post("/login", login);
+router.post("/registerUser", registerUser);
+router.post("/login", login);
 // router.get("/dashboard", dashboard);
 
 // Todo Routes

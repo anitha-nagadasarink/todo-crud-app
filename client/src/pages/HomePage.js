@@ -31,7 +31,7 @@ const HomePage = () => {
 
   return (
     <section>
-      <Container fluid className="todo-app">
+      <Container fluid className="todo-container">
         <Row>
           <Col xs={12} lg={4}>
             <TodoForm fetchTodoData={fetchTodoData} />

@@ -5,7 +5,7 @@ import Col from 'react-bootstrap/Col';
 
 import Form from 'react-bootstrap/Form';
 
-import { FaRegEdit, FaRegTrashAlt, FaRegStar } from "react-icons/fa";
+import { FaRegEdit, FaRegTrashAlt, FaRegStar, FaSearch } from "react-icons/fa";
 import { BsFillStarFill } from "react-icons/bs";
 
 import axios from "axios";
@@ -108,10 +108,13 @@ const TodoList = ({ todoData, fetchTodoData }) => {
               // </Form>
             }
 
-            <input
-              placeholder='Search Todo'
-              className="p-1 mt-4"
-              onChange={(e) => handleSearch(e.target.value)} />
+            <div bg="light" className='bg-light' >
+              <input
+                placeholder='Search Todo'
+                className="p-1 mt-4"
+                onChange={(e) => handleSearch(e.target.value)} />
+              <FaSearch className='text-info' />
+            </div>
           </Col>
           <Col xs={12} lg={3} className='sort-todo-list pl-0'>
             <span className='text-light'>Sory By:</span>

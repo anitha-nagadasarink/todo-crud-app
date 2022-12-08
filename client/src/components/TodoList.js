@@ -81,11 +81,13 @@ const TodoList = ({ todoData, fetchTodoData }) => {
 
     if (searchInput !== '') {
       const filteredData = todoData.filter((item) => {
-        return Object.values(item.title).join('').toLowerCase().includes(searchInput.toLowerCase());
+        return Object.values(item.title).join('').toLowerCase().includes(searchInput.toLowerCase()) ||
+          Object.values(item.tasks).join('').toLowerCase().includes(searchInput.toLowerCase());
       });
       setFilteredResults(filteredData);
     } else {
       setFilteredResults(todoData);
+
     }
   }
   return (
@@ -108,10 +110,10 @@ const TodoList = ({ todoData, fetchTodoData }) => {
               // </Form>
             }
 
-            <div bg="light" className='bg-light' >
+            <div className='bg-white  w-100 h-75 mt-3'>
               <input
                 placeholder='Search Todo'
-                className="p-1 mt-4"
+                className="p-2 mt-2 border-0 w-auto"
                 onChange={(e) => handleSearch(e.target.value)} />
               <FaSearch className='text-info' />
             </div>

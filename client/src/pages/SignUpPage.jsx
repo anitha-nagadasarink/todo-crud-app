@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { Container, Row, Col, Button, Form } from 'react-bootstrap';
 import axios from "axios";
 import { Toaster, toast } from "react-hot-toast";
+import { useNavigate } from 'react-router-dom';
+
 
 
 
@@ -10,6 +12,7 @@ const SignUpPage = () => {
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const pageRedirect = useNavigate();
 
   // Store Date to Database
   const submitUserRegistration = async () => {
@@ -27,6 +30,7 @@ const SignUpPage = () => {
         toast.error("Enter all Data")
       } else {
         toast.success(`User Resigtered Successfully!`);
+        pageRedirect("/login");
       }
     }
     catch (error) {

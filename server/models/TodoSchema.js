@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 
+
 const TodoSchema = new mongoose.Schema({
   title: {
     type: String,
@@ -17,20 +18,17 @@ const TodoSchema = new mongoose.Schema({
     type: Boolean,
     default: true
   },
-  // userID: {
-  //   type: String,
-  //   required: true,
-  //   trim: true,
-  //   maxlength: [25, "Max Length should be less then 25 characters"]
-  // }
+  userID: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "UserDB",
+    required: true,
+    trim: true,
+    maxlength: [25, "Max Length should be less then 25 characters"]
+  }
 },
   {
-    timestamps:
-    {
-      createdAt: 'createdAt'
-    }
+    timestamps: true
   }
-
 );
 
 module.exports = mongoose.model("TodoDB", TodoSchema);

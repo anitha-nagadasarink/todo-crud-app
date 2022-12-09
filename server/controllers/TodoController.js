@@ -115,7 +115,7 @@ exports.login = async (req, res) => {
 
 exports.createTodo = async (req, res) => {
   try {
-    const { title, tasks, isPriority } = req.body;
+    const { title, tasks, isPriority, userID } = req.body;
     console.log("Todo", title, tasks, isPriority);
 
     const todobj = {};
@@ -141,6 +141,12 @@ exports.createTodo = async (req, res) => {
         enumerable: true
       })
     }
+
+    Object.defineProperty(todobj, "userID", {
+      value: userID,
+      enumerable: true
+    });
+
     const todo = await TodoDB.create(todobj);
     await todo.save();
 

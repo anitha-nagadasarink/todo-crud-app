@@ -19,6 +19,7 @@ import "./App.css";
 
 // Page Routes
 import Header from './layouts/Header';
+import Footer from "./layouts/Footer";
 import { Routes, Route } from "react-router-dom";
 
 
@@ -32,6 +33,7 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
       </Routes>
+      <Footer />
     </main>
   );
 }

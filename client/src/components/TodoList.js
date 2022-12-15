@@ -110,12 +110,12 @@ const TodoList = ({ todoData, fetchTodoData }) => {
               // </Form>
             }
 
-            <div className='bg-white  w-100 h-75 mt-3'>
+            <div className='bg-white search-bar'>
               <input
                 placeholder='Search Todo'
-                className="p-2 mt-2 border-0 w-auto"
+                className="p-2 border-0 w-auto"
                 onChange={(e) => handleSearch(e.target.value)} />
-              <FaSearch className='text-info' />
+              <FaSearch className='serach-icon text-info' />
             </div>
           </Col>
           <Col xs={12} lg={3} className='sort-todo-list pl-0'>

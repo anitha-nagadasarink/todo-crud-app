@@ -1,6 +1,10 @@
 /* Registeration  */
 
 
+.form-container {
+  max-width: 600px;
+}
+
 .todo-container {
   background-color: #03203C;
   padding: 20px;
@@ -41,4 +45,38 @@
   border: none;
   background: none;
   margin: 0 5px;
+}
+
+.search-bar {
+  position: relative;
+  max-width: 220px;
+  height: 40px;
+  margin-top: 21px;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.serach-icon {
+  position: absolute;
+  right: 15px;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+}
+
+.search-bar:focus,
+.search-bar:focus-visible {
+  border: none;
+  outline: none;
+}
+
+@media all and (max-width: 767px) {
+  .search-bar {
+    max-width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .form-container {
+    max-width: 90%;
+  }
 }

@@ -56,7 +56,7 @@ const SignUpPage = () => {
 
       <h1 className='text-light text-center mb-4'>SignUp</h1>
 
-      <div className="w-50 mx-auto">
+      <div className="form-container mx-auto">
         <Container>
           <Form onSubmit={handleRegisteration} className="py-5 px-3 bg-white">
             <Row className="mb-2">

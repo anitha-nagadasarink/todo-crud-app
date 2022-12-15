@@ -17,7 +17,6 @@ const TodoForm = ({ fetchTodoData }) => {
 
   const submitData = async () => {
     try {
-
       const data = {
         title: title,
         tasks: tasks.split(','),

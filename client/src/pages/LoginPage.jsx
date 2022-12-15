@@ -48,7 +48,7 @@ const LoginPage = () => {
     <section className='pt-5 info-gradient todo-container'>
 
       <h1 className='text-light text-center mb-4'>Login</h1>
-      <div className="w-50 mx-auto">
+      <div className="form-container mx-auto">
         <Form onSubmit={handleLogin} className="py-5 px-3 bg-white">
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>

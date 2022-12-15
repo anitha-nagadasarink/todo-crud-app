@@ -142,10 +142,18 @@ exports.createTodo = async (req, res) => {
       })
     }
 
+
+    // Check User exists in  User Database
+    const userExists = await UserDB.findOne({ userID });
+
+    if (userExists == userID) {
+      throw new Error(`User Id ${userExists} not exits in User Datdabase`);
+    }
     Object.defineProperty(todobj, "userID", {
       value: userID,
       enumerable: true
-    });
+    })
+
 
     const todo = await TodoDB.create(todobj);
     await todo.save();

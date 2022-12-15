@@ -19,7 +19,8 @@ const LoginPage = () => {
         password: password
 
       }
-      const res = await axios.post("/login", UserLogin);
+      const BASE_URL = "todo-crud-app.up.railway.app";
+      const res = await axios.post(`${BASE_URL}/login`, UserLogin);
 
       if (!res.data.success) {
         toast.error("Enter All Data")

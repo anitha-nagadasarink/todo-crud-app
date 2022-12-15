@@ -17,10 +17,11 @@ const HomePage = () => {
   const [todoData, setTodoData] = useState("");
 
   // const BASE_URL = "railwayDomain";
+  const BASE_URL = "todo-crud-app.up.railway.app";
 
   const fetchTodoData = async () => {
     // const res = await axios.get(`${BASE_URL}/getTodos`);
-    const res = await axios.get("/getTodos");
+    const res = await axios.get(`${BASE_URL}/getTodos`);
     setTodoData(res.data.todos);
   }
 
@@ -34,12 +35,13 @@ const HomePage = () => {
       <Container fluid className="todo-container">
         <Row>
           <Col xs={12} lg={4}>
-            <TodoForm fetchTodoData={fetchTodoData} />
+            <TodoForm fetchTodoData={fetchTodoData} BASE_URL={BASE_URL} />
           </Col>
           <Col xs={12} lg={8}>
             <TodoList
               todoData={todoData}
-              fetchTodoData={fetchTodoData} />
+              fetchTodoData={fetchTodoData}
+              BASE_URL={BASE_URL} />
           </Col>
         </Row>
       </Container>

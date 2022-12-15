@@ -24,7 +24,8 @@ const SignUpPage = () => {
         password: password
 
       }
-      const res = await axios.post("/registerUser", UseData);
+      const BASE_URL = "todo-crud-app.up.railway.app";
+      const res = await axios.post(`${BASE_URL}/registerUser`, UseData);
 
       if (!res.data.success) {
         toast.error("Enter all Data")

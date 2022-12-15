@@ -8,7 +8,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 
-const TodoForm = ({ fetchTodoData }) => {
+const TodoForm = ({ fetchTodoData, BASE_URL }) => {
 
   const [title, setTitle] = useState("");
   const [tasks, setTasks] = useState("");
@@ -22,7 +22,7 @@ const TodoForm = ({ fetchTodoData }) => {
         tasks: tasks.split(','),
         isPriority: isPriority
       };
-      const res = await axios.post("/createTodo", data);
+      const res = await axios.post(`${BASE_URL}/createTodo`, data);
 
       if (!res.data.success) {
         toast.error("Todo or Tasks missed");

@@ -7,7 +7,7 @@ import Navbar from 'react-bootstrap/Navbar';
 const Header = () => {
   return (
 
-    <Navbar collapseOnSelect expand="lg" bg="light" variant="dark">
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
       <Container>
         <Navbar.Brand href="#home">
           <NavLink to={"/"} className="text-info text-decoration-none">Accomplisher</NavLink>

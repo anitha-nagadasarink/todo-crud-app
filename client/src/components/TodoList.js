@@ -13,7 +13,7 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useState } from 'react';
 
-const TodoList = ({ todoData, fetchTodoData }) => {
+const TodoList = ({ todoData, fetchTodoData, BASE_URL }) => {
 
   // Handle
 
@@ -25,7 +25,7 @@ const TodoList = ({ todoData, fetchTodoData }) => {
       if (!newTitle || !newTaks) {
         toast.error("Please enter Tasks and title");
       } else {
-        const resp = await axios.put(`/editTodo/${todoId}`, {
+        const resp = await axios.put(`${BASE_URL}/editTodo/${todoId}`, {
           title: newTitle[0].toUpperCase() + newTitle.substring(1),
           tasks: newTaks
         });

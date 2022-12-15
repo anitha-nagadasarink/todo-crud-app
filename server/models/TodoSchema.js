@@ -18,13 +18,13 @@ const TodoSchema = new mongoose.Schema({
     type: Boolean,
     default: true
   },
-  userID: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "UserDB",
-    required: true,
-    trim: true,
-    maxlength: [25, "Max Length should be less then 25 characters"]
-  }
+  // userID: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "UserDB",
+  //   required: true,
+  //   trim: true,
+  //   maxlength: [25, "Max Length should be less then 25 characters"]
+  // }
 },
   {
     timestamps: true

@@ -25,12 +25,12 @@ const UserSchema = new mongoose.Schema({
   token: {
     type: String
   },
-  todos: {
-    type: [{
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "TodoDB",
-      required: [true, "Todo Id is required to store todo for user"]
-    }],
-  }
+  // todos: {
+  //   type: [{
+  //     type: mongoose.Schema.Types.ObjectId,
+  //     ref: "TodoDB",
+  //     required: [true, "Todo Id is required to store todo for user"]
+  //   }],
+  // }
 });
 module.exports = mongoose.model("UserDB", UserSchema);

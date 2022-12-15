@@ -10,16 +10,16 @@ const Header = () => {
     <Navbar collapseOnSelect expand="lg" bg="light" variant="dark">
       <Container>
         <Navbar.Brand href="#home">
-          <NavLink to={"/"}>Accomplisher</NavLink>
+          <NavLink to={"/"} className="text-info text-decoration-none">Accomplisher</NavLink>
         </Navbar.Brand>
-        <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+        <Navbar.Toggle aria-controls="responsive-navbar-nav" className="bg-info" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link>
-              <NavLink to={"/signup"}>SingUp</NavLink>
+              <NavLink to={"/signup"} className="text-info text-decoration-none">SingUp</NavLink>
             </Nav.Link>
             <Nav.Link>
-              <NavLink to={"/login"}>Login</NavLink>
+              <NavLink to={"/login"} className="text-info text-decoration-none">Login</NavLink>
             </Nav.Link>
           </Nav>
         </Navbar.Collapse>

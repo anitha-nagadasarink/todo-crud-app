@@ -54,6 +54,8 @@
   margin-top: 21px;
   border-radius: 5px;
   overflow: hidden;
+  border: none;
+  outline: none;
 }
 
 .serach-icon {
@@ -69,6 +71,8 @@
   border: none;
   outline: none;
 }
+
+
 
 @media all and (max-width: 767px) {
   .search-bar {

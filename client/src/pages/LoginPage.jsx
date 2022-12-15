@@ -24,7 +24,7 @@ const LoginPage = () => {
       if (!res.data.success) {
         toast.error("Enter All Data")
       } else {
-        toast.success(`User Resigtered in Database!`);
+        toast.success(`User  Succesfully logedIn!`);
         pageRedirect("/")
       }
     }
@@ -46,7 +46,6 @@ const LoginPage = () => {
 
   return (
     <section className='pt-5 info-gradient todo-container'>
-
       <h1 className='text-light text-center mb-4'>Login</h1>
       <div className="form-container mx-auto">
         <Form onSubmit={handleLogin} className="py-5 px-3 bg-white">
@@ -75,6 +74,7 @@ const LoginPage = () => {
         </Form>
       </div>
       <Toaster />
+
     </section>
   )
 }
